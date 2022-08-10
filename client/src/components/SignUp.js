@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 function SignUp({ onLogin }) {
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -83,3 +85,5 @@ function SignUp({ onLogin }) {
       </form>
     );
   }
+
+  export default SignUp

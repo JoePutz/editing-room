@@ -25,3 +25,5 @@ function Login({ onLogin }) {
       </form>
     );
   }
+
+  export default Login
