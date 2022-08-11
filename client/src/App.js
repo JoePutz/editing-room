@@ -32,14 +32,14 @@ function App() {
     return (
       <>
       <BrowserRouter>
-      <NavBar/>
+      <NavBar onLogin={setUser}/>
       {user? <h1>User</h1> : <h1> No User</h1>}
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/signup" element={<SignUp onLogin={setUser}/>}></Route>
         <Route path="/genres" element={<Genre/>}></Route>
         <Route path="/genres/:id" element={<GenrePage />} />
-        <Route path="/account" element={<User/>}></Route>
+        <Route path="/account" element={<User user={user}/>}></Route>
         <Route path="/storypage/:id" element={<StoryPage />}></Route>
       </Routes>
       </BrowserRouter>
