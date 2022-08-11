@@ -1,11 +1,24 @@
 import React from "react";
 
 function User( {user} ) {
+
+    
     return (
         <>
         {user?
-        <h1>{user.username}</h1> :<h1>Nope</h1>}
-        <h1>Here should be all the stories written or favorited. only works if you log in as a user though, othewise just says "Please Log In"</h1>
+        <>
+        <h1>Welcome {user.username}</h1>
+        {user.bio? 
+        <p>user.bio</p>
+        :<p>Empty bio</p>}
+        <button>Write/Edit Bio</button>
+        <h2>Edit Account</h2>
+        <h2>Personal Stories</h2>
+        {/* {user.stories.map((story) => <li>Hi</li>)} */}
+        <h2>Favorite Stories</h2>
+        {/* {user.fav_stories.map((story) => <li>Hi</li>)} */}
+        </>
+        :<h1>Must Log In</h1>}
         </>
     )
 }

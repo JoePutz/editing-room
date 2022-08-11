@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 import User from "./components/User";
 import GenrePage from "./components/GenrePage";
 import StoryPage from "./components/StoryPage";
+import Login from "./components/Login";
 
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
     return (
       <>
       <BrowserRouter>
-      <NavBar onLogin={setUser}/>
+      <NavBar user ={user} onLogin={setUser}/>
       {user? <h1>User</h1> : <h1> No User</h1>}
       <Routes>
         <Route path="/" element={<Home/>}></Route>
@@ -41,6 +42,7 @@ function App() {
         <Route path="/genres/:id" element={<GenrePage />} />
         <Route path="/account" element={<User user={user}/>}></Route>
         <Route path="/storypage/:id" element={<StoryPage />}></Route>
+        <Route path="/loginpage" element={<Login onLogin={setUser}/>}></Route>
       </Routes>
       </BrowserRouter>
       </>
