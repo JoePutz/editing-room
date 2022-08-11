@@ -11,7 +11,7 @@ function SignUp({ onLogin }) {
   
     function handleSubmit(e) {
       e.preventDefault();
-      fetch("/signup", {
+      fetch("/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,7 +27,7 @@ function SignUp({ onLogin }) {
         }),
       })
         .then((r) => r.json())
-        .then(onLogin);
+        .then((user) => onLogin(user));
     }
   
     return (
@@ -82,6 +82,7 @@ function SignUp({ onLogin }) {
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
         <button type="submit">Submit</button>
+        <h2>When done/logged in, should show Logout button in NavBar instead of Create Account</h2>
       </form>
     );
   }

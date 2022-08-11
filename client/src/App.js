@@ -5,18 +5,22 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import Genre from "./components/Genre";
+import NavBar from "./components/NavBar";
+import User from "./components/User";
+import GenrePage from "./components/GenrePage";
+import StoryPage from "./components/StoryPage";
 
 
 function App() {
-  // const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
   
-  //   useEffect(() => {
-  //     fetch("/me").then((response) => {
-  //       if (response.ok) {
-  //         response.json().then((user) => setUser(user));
-  //       }
-  //     });
-  //   }, []);
+    useEffect(() => {
+      fetch("/me").then((response) => {
+        if (response.ok) {
+          response.json().then((user) => setUser(user));
+        }
+      });
+    }, []);
   
     // if (user) {
     //   return <h2>Welcome, {user.username}!</h2>;
@@ -28,10 +32,15 @@ function App() {
     return (
       <>
       <BrowserRouter>
+      <NavBar/>
+      {user? <h1>User</h1> : <h1> No User</h1>}
       <Routes>
         <Route path="/" element={<Home/>}></Route>
-        <Route path="/signup" element={<SignUp/>}></Route>
+        <Route path="/signup" element={<SignUp onLogin={setUser}/>}></Route>
         <Route path="/genres" element={<Genre/>}></Route>
+        <Route path="/genres/:id" element={<GenrePage />} />
+        <Route path="/account" element={<User/>}></Route>
+        <Route path="/storypage/:id" element={<StoryPage />}></Route>
       </Routes>
       </BrowserRouter>
       </>
