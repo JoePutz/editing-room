@@ -19,10 +19,10 @@ function SignUp({ onLogin }) {
         body: JSON.stringify({
           first_name: firstName,
           last_name: lastName,
-          username,
-          email,
+          username: username,
+          email: email,
           image_url: userImage,
-          password,
+          password: password,
           password_confirmation: passwordConfirmation,
         }),
       })
