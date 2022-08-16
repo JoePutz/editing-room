@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_08_212450) do
+ActiveRecord::Schema.define(version: 2022_08_11_235307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "critiques", force: :cascade do |t|
+    t.text "criticism"
+    t.bigint "crit_story_id"
+    t.bigint "crit_writer_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["crit_story_id"], name: "index_critiques_on_crit_story_id"
+    t.index ["crit_writer_id"], name: "index_critiques_on_crit_writer_id"
+  end
+
+  create_table "stories", force: :cascade do |t|
+    t.string "title"
+    t.integer "user_id"
+    t.string "genre"
+    t.text "text"
+    t.text "synopsis"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -27,4 +47,6 @@ ActiveRecord::Schema.define(version: 2022_08_08_212450) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "critiques", "stories", column: "crit_story_id"
+  add_foreign_key "critiques", "users", column: "crit_writer_id"
 end

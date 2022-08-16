@@ -10,6 +10,8 @@ import User from "./components/User";
 import GenrePage from "./components/GenrePage";
 import StoryPage from "./components/StoryPage";
 import Login from "./components/Login";
+import StoryForm from "./components/StoryForm";
+import EditStoryForm from "./components/EditStoryForm";
 
 
 function App() {
@@ -41,8 +43,10 @@ function App() {
         <Route path="/genres" element={<Genre/>}></Route>
         <Route path="/genres/:id" element={<GenrePage />} />
         <Route path="/account" element={<User user={user}/>}></Route>
-        <Route path="/storypage/:id" element={<StoryPage />}></Route>
+        <Route path="/storypage/:id" element={<StoryPage user={user}/>}></Route>
+        <Route path="/storypage/:id/edit" element={<EditStoryForm user={user}/>}></Route>
         <Route path="/loginpage" element={<Login onLogin={setUser}/>}></Route>
+        <Route path="/writestory" element={<StoryForm user={user} />}></Route>
       </Routes>
       </BrowserRouter>
       </>
