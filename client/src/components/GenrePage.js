@@ -5,7 +5,6 @@ import StoryCard from "./StoryCard";
 function GenrePage( {genre} ) {
     const [stories, setStories] = useState([])
     let { id } = useParams();
-    console.log(id)
 
     useEffect(() => {
         fetch(`/stories?genre=${id}`)

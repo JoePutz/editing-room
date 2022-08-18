@@ -3,8 +3,14 @@ class StoriesController < ApplicationController
 
   # GET /stories
   def index
-    stories = Story.where(genre: params[:genre])
-    render json: stories
+    if params[:genre]
+      stories = Story.where(genre: params[:genre])
+      render json: stories
+    elsif params[:user_id]
+      stories = Story.where(user_id: params[:user_id])
+      render json: stories
+    end
+    
     # if params[:genre]
     #   genreStories = @stories.where(genre: params[:genre])
     #   render json: genreStories, serializer: StorySerializer

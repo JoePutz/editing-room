@@ -12,6 +12,8 @@ import StoryPage from "./components/StoryPage";
 import Login from "./components/Login";
 import StoryForm from "./components/StoryForm";
 import EditStoryForm from "./components/EditStoryForm";
+import CritiquePage from "./components/CritiquePage";
+import CritiqueForm from "./components/CritiqueForm";
 
 
 function App() {
@@ -45,6 +47,8 @@ function App() {
         <Route path="/account" element={<User user={user}/>}></Route>
         <Route path="/storypage/:id" element={<StoryPage user={user}/>}></Route>
         <Route path="/storypage/:id/edit" element={<EditStoryForm user={user}/>}></Route>
+        <Route path="/storypage/:id/critiques" element={<CritiquePage user={user}/>}></Route>
+        <Route path="/storypage/:id/critiques/add" element={<CritiqueForm user={user}/>}></Route>
         <Route path="/loginpage" element={<Login onLogin={setUser}/>}></Route>
         <Route path="/writestory" element={<StoryForm user={user} />}></Route>
       </Routes>
