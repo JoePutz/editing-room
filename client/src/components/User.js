@@ -3,19 +3,26 @@ import StoryCard from "./StoryCard"
 import { useNavigate } from "react-router-dom";
 
 function User( {user} ) {
-    // const [secretUser, setSecretUser] = useState({})
+    const [stories, setStories] = useState([])
+    const [favorites, setFavorites] = useState([])
     const navigate = useNavigate();
     const writeStoryClick = (e) => {
         navigate(`/writestory`)
     }
 
-    // useEffect(() => {
-    //     fetch(`/users/${user.id}`)
-    //       .then((response) => response.json())
-    //       .then((data) => setSecretUser(data));
-    // }, []);
+    useEffect(() => {
+        fetch(`/stories?user_id=${user.id}`)
+          .then((response) => response.json())
+          .then((data) => setStories(data));
+    }, []);
 
-    // console.log(secretUser)
+    useEffect(() => {
+        fetch(`/favorites?fav_user_id=${user.id}`)
+          .then((response) => response.json())
+          .then((data) => setFavorites(data));
+    }, []);
+
+
 
     
     return (
@@ -30,9 +37,9 @@ function User( {user} ) {
         <button onClick ={writeStoryClick}>Write Story</button>
         <h2>Edit Account</h2>
         <h2>Personal Stories</h2>
-        {user.stories.map((story) => <StoryCard story={story}/>)}
+        {stories? stories.map((story) => <StoryCard story={story}/>) : <></>}
         <h2>Favorite Stories</h2>
-        {/* {user.fav_stories.map((story) => <li>Hi</li>)} */}
+        {favorites? favorites.map((favorite) => <StoryCard story={favorite.fav_story}/>) : <></>}
         </>
         :<h1>Must Log In</h1>}
         </>

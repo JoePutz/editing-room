@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_11_235307) do
+ActiveRecord::Schema.define(version: 2022_08_17_164950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,25 @@ ActiveRecord::Schema.define(version: 2022_08_11_235307) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["crit_story_id"], name: "index_critiques_on_crit_story_id"
     t.index ["crit_writer_id"], name: "index_critiques_on_crit_writer_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "fav_story_id"
+    t.bigint "fav_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fav_story_id"], name: "index_favorites_on_fav_story_id"
+    t.index ["fav_user_id"], name: "index_favorites_on_fav_user_id"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.string "response"
+    t.bigint "resp_critique_id"
+    t.bigint "resp_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resp_critique_id"], name: "index_responses_on_resp_critique_id"
+    t.index ["resp_user_id"], name: "index_responses_on_resp_user_id"
   end
 
   create_table "stories", force: :cascade do |t|
@@ -49,4 +68,8 @@ ActiveRecord::Schema.define(version: 2022_08_11_235307) do
 
   add_foreign_key "critiques", "stories", column: "crit_story_id"
   add_foreign_key "critiques", "users", column: "crit_writer_id"
+  add_foreign_key "favorites", "stories", column: "fav_story_id"
+  add_foreign_key "favorites", "users", column: "fav_user_id"
+  add_foreign_key "responses", "critiques", column: "resp_critique_id"
+  add_foreign_key "responses", "users", column: "resp_user_id"
 end

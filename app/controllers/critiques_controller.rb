@@ -3,9 +3,14 @@ class CritiquesController < ApplicationController
 
   # GET /critiques
   def index
-    @critiques = Critique.all
+    if params[:crit_story_id]
+      critiques = Critique.where(crit_story_id: params[:crit_story_id])
+      render json: critiques
+    else
+      @critiques = Critique.all
 
-    render json: @critiques
+      render json: @critiques
+    end
   end
 
   # GET /critiques/1
