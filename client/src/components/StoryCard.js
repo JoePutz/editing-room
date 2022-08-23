@@ -7,11 +7,16 @@ function StoryCard( { story} ) {
         navigate(`/storypage/${story.id}`)
     }
 
+
     return (
-        <div onClick={handleClick}>
-            <h2>{story.title}</h2>
-            <h3>by: {story.author}</h3>
-            <h3>synopsis: {story.synopsis}</h3>
+        <div id="storyCard" onClick={handleClick}>
+            <a className="title">{story.title}   </a>
+            <a className="author">by: {story.author}</a>
+            <br></br>
+            <a>{story.synopsis}</a>
+            <br></br>
+            {story.totalFavorites > 0 ? <a className="favorites">Favorites: {story.totalFavorites}</a> : <a className="favorites">Favorites: 0</a>}
+            <a>                      Last Updated: {story.updated_at}</a>
         </div>
     )
 }

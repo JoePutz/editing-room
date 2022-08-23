@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: [:show, :update, :destroy]
+  # skip_before_action :authorized, only: [:index, :show]
 
   # GET /stories
   def index
@@ -9,21 +10,11 @@ class StoriesController < ApplicationController
     elsif params[:user_id]
       stories = Story.where(user_id: params[:user_id])
       render json: stories
-    end
-    
-    # if params[:genre]
-    #   genreStories = @stories.where(genre: params[:genre])
-    #   render json: genreStories, serializer: StorySerializer
-    #   # if (genreStories == nil)
-    #   #   render json: 'no stories of that genre'
-    #   # else
-    #   #   render json: genreStories, serializer: StorySerializer
-    #   # end
-    # else
-    # @stories = Story.all
+    else
+    @stories = Story.all
 
-    # render json: @stories
-    # end
+    render json: @stories
+    end
   end
   # def index
   #   if params[:genre]

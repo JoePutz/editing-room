@@ -14,6 +14,7 @@ import StoryForm from "./components/StoryForm";
 import EditStoryForm from "./components/EditStoryForm";
 import CritiquePage from "./components/CritiquePage";
 import CritiqueForm from "./components/CritiqueForm";
+import UsersPage from "./components/UsersPage";
 
 
 function App() {
@@ -26,21 +27,24 @@ function App() {
         }
       });
     }, []);
-  
-    // if (user) {
-    //   return <h2>Welcome, {user.username}!</h2>;
-    // } else {
-    //   return <h2>Sup?</h2>
-    //   // return <Login onLogin={setUser} />;
-    // }
+
+    // keep alive on heroku
+
+      // const https = require("https");
+
+      // setInterval(function() {
+      //     https.get("https://your-heroku-app-name.herokuapp.com/");
+      // }, 300000); // every 5 minutes (300000)
+
+
+
 
     return (
       <>
       <BrowserRouter>
       <NavBar user ={user} onLogin={setUser}/>
-      {user? <h1>User</h1> : <h1> No User</h1>}
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
+        <Route path="/" element={<Home user={user} />}></Route>
         <Route path="/signup" element={<SignUp onLogin={setUser}/>}></Route>
         <Route path="/genres" element={<Genre/>}></Route>
         <Route path="/genres/:id" element={<GenrePage />} />
@@ -51,6 +55,8 @@ function App() {
         <Route path="/storypage/:id/critiques/add" element={<CritiqueForm user={user}/>}></Route>
         <Route path="/loginpage" element={<Login onLogin={setUser}/>}></Route>
         <Route path="/writestory" element={<StoryForm user={user} />}></Route>
+        <Route path="/userspage" element={<UsersPage user={user} />}></Route>
+        {/* <Route path="/userpage/:id" element={<UserPage user={user}/>}></Route> */}
       </Routes>
       </BrowserRouter>
       </>

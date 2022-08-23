@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :update, :destroy]
+  # skip_before_action :authorized, only: :index
 
   # GET /favorites
   def index
@@ -12,7 +13,7 @@ class FavoritesController < ApplicationController
         render json: favor2
       end
     elsif params[:fav_user_id]
-    favorites = Favorite.where(fav_user_id: params[:fav_user_id])
+    favorites = Favorite.where(fav_user_id: params[:fav_user_id]).order(updated_at: :desc)
     render json: favorites
     else 
     @favorites = Favorite.all

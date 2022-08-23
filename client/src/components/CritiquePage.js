@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import CritiqueCard from "./CritiqueCard"
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function CritiquePage( {user} ) {
     const [ critiques, setCritiques ] = useState([])
-    // const [ story, setStory ] = useState([])
+    const [ story, setStory ] = useState([])
+    const [ refresh, setRefresh ] = useState(false)
     let { id } = useParams();
 
     const navigate = useNavigate();
@@ -14,22 +16,38 @@ function CritiquePage( {user} ) {
     }
 
     useEffect(() => {
-        fetch(`/critiques?crit_story=${id}`)
+        fetch(`/critiques?crit_story_id=${id}`)
           .then((response) => response.json())
           .then((data) => setCritiques(data));
+    }, [refresh]);
+
+    useEffect(() => {
+        fetch(`/stories/${id}`)
+          .then((response) => response.json())
+          .then((data) => setStory(data));
     }, []);
 
-    // useEffect(() => {
-    //     fetch(`/stories/${id}`)
-    //       .then((response) => response.json())
-    //       .then((data) => setStory(data));
-    // }, []);
+    function handleCritiqueDelete(critiqueID) {
+        fetch(`/critiques/${critiqueID}`,{
+            method: "DELETE"
+       })
+       .then(()=> setRefresh(!refresh))
+    }
+
+
 
 
     return(
         <>
+        <span className="leftRight">
+        <Link to={`/storypage/${id}`}>Critiques of {story.title}</Link>
         {user? <button onClick={handleClick}>Add Critique</button> : <></>}
-        {critiques.map(critique => <CritiqueCard critique={critique} user={user}/>) }
+        </span>
+        <br></br>
+        <br></br>
+        <div id="contains">
+        {critiques.map(critique => <CritiqueCard key={critique.id} critique={critique} user={user} handleCritiqueDelete={handleCritiqueDelete} />) }
+        </div>
         </>
     )
 }

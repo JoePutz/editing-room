@@ -1,5 +1,6 @@
 class ResponsesController < ApplicationController
   before_action :set_response, only: [:show, :update, :destroy]
+  # skip_before_action :authorized, only: :index
 
   # GET /responses
   def index

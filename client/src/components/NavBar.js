@@ -10,20 +10,23 @@ function NavBar({ onLogin, user }) {
     }
 
     return (
-        <>
+        <nav>
         <NavLink to='/'>Home</NavLink>
         <NavLink to='/genres'>Stories</NavLink>
+        <NavLink to='/userspage'>Authors</NavLink>
         {user?
-        <>
-        <NavLink to='/account'>Account</NavLink>
+        <span className="loginout">
+        <NavLink to='/account'>{user.username}</NavLink>
+        |
         <button onClick={logout}>Log Out</button>
-        </>
-        :<>
+        </span>
+        :<span className="loginout">
         <NavLink to='/signup'>Create Account</NavLink>
+        |
         <NavLink to='/loginpage'>Log In</NavLink>
-        </>
+        </span>
         }
-        </>
+        </nav>
     )
 }
 

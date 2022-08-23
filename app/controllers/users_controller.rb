@@ -1,16 +1,27 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  # skip_before_action :authorized, only: [:index, :create]
 
   # GET /users
   def index
+    if params[:id]
+      user = User.where(id: params[:id])
+      render json: user
+    else
     @users = User.all
 
     render json: @users
+    end
   end
 
   # GET /users/1
+  def me
+    render json: current_user
+  end
+
+
   def show
-    user = User.find_by(id: session[:userr_id])
+    user = User.find_by(id: session[:user_id])
     if user
       render json: user
     else

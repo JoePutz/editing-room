@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react'
 import ResponseForm from './ResponseForm'
 import ResponseCard from './ResponseCard'
 
-function CritiqueCard( {critique, user} ) {
+function CritiqueCard( {critique, user, handleCritiqueDelete} ) {
     const [ responses, setResponses ] = useState([])
     const [ refresh, setRefresh ] = useState(false)
+    const [ response, setResponse ] =useState("")
+    const [ visible, setVisible ] = useState(false)
+
 
     useEffect(() => {
         fetch(`/responses?resp_critique_id=${critique.id}`)
@@ -13,25 +16,56 @@ function CritiqueCard( {critique, user} ) {
     }, [refresh]);
 
     function handleResponse() {
-        var x = document.getElementById("myDIV");
-        if (x.style.display === "block") {
-            x.style.display = "none";
-        } else {
-            x.style.display = "block";
-        }
+        setVisible(!visible)
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        fetch("/responses", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              response: response,
+              resp_user_id: user.id,
+              resp_critique_id: critique.id
+            }),
+          })
+            .then((r) => r.json())
+            .then(() => {setRefresh(!refresh)
+                handleResponse()
+            
+            })
+    }
+
+    function handleResponseDelete(id) {
+        fetch(`/responses/${id}`,{
+            method: "DELETE"
+       })
+       .then(()=> setRefresh(!refresh))
+    }
+
+    function handleDeleteClick() {
+        handleCritiqueDelete(critique.id)
     }
 
 
+
+
 return(
-    <div>
-        <h3>Critique by: {critique.crit_writer.username}</h3>
+    <div id="critiqueCard">
+        <a className="poster">{critique.user}</a>
+        {user && user.id === critique.crit_writer_id ? <button onClick={handleDeleteClick} className="deleteCritique">Delete</button> : <></>}
         <p>{critique.criticism}</p>
-        {responses.map((response) => <ResponseCard response={response} setRefresh={setRefresh} refresh={refresh} />)}
+        {responses.map((response) => <ResponseCard key={response.id} response={response} user={user} handleResponseDelete={handleResponseDelete}/>)}
         {user? <>        
-        <button onClick={handleResponse}>this buttone will eventually hide ResponseForm</button>
-        <div id="myDIV">
-        <ResponseForm user={user} critique={critique} />
-        </div>
+        {visible? 
+        <>
+        <button onClick={handleResponse}>Close</button>
+        <ResponseForm user={user} critique={critique} handleResponseDelete={handleResponseDelete} submitResponse={handleSubmit} setResponse={setResponse} />
+        </>
+        : <button onClick={handleResponse}>Reply</button>}
         </> : <></>}
     </div>
 )

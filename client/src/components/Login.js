@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 function Login({ onLogin }) {
-    // const [username, setUsername] = useState("");
-    // const [password, setPassword] = useState("");
+    const navigate = useNavigate();
   
     const [loginError,setLoginError] = useState(null)
     const [user, setUser] = useState({
@@ -31,7 +31,7 @@ function Login({ onLogin }) {
       })
         .then((r) => {
           if (r.ok) {
-            r.json().then(user => onLogin(user))
+            r.json().then(user => onLogin(user)).then(() => navigate(`/account`))
           } else {
             setLoginError(true)
             r.json().then(error => console.log(error))
@@ -42,19 +42,23 @@ function Login({ onLogin }) {
     
   
     return (
+      <div className="submitform">
       <form onSubmit={handleSubmit}>
         <input
           placeholder='username'
           type="text"
           onChange={handleChange}
         />
+        <br></br>
         <input 
-          type="text"
+          type="password"
           placeholder='password'
           onChange={handleChange}
         />
+        <br></br>
         <button type="submit">Login</button>
       </form>
+      </div>
     );
   }
 
