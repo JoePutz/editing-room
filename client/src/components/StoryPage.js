@@ -6,7 +6,6 @@ function StoryPage( user ) {
     const [ story, setStory ] = useState([])
     const [ refresh, setRefresh] = useState(false)
     const [ favorite, setFavorite] = useState(false)
-    // const [ favDetails, setFavDetails] = useState({})
     let { id } = useParams();
 
     useEffect(() => {
@@ -30,8 +29,6 @@ function StoryPage( user ) {
         }
     },[user])
 
-    // console.log(story.id)
-
     function handleFavorite() {
         fetch("/favorites", {
             method: "POST",
@@ -45,9 +42,7 @@ function StoryPage( user ) {
           })
             .then((r) => r.json())
             .then((favorite) => setFavorite(favorite))
-            .then(() => {
-                // setFavorite(!favorite)
-                setRefresh(!refresh)
+            .then(() => {setRefresh(!refresh)
             });
       
     }
@@ -73,15 +68,24 @@ function StoryPage( user ) {
         {user.user && user.user.username === story.author?
         <button onClick={handleEdit}>Edit Story</button>
         : <></>}
-        <h2>{story.title}</h2>
-        <h3>by: {story.author}</h3>
-        <p>{story.text}</p>
+        <div className="storypage">
+            <br></br>
+            <div className="storyHeader">
+                <h2>{story.title}</h2>
+                <h3>by: {story.author}</h3>
+            </div>
+            <div className="storytext">
+                <p>{story.text}</p>
+            </div>
+        </div>
+        <div className="storyHeader">
         {user.user?
         <>
         {favorite.id ? <button onClick={handleUnfavorite}>Unfavorite</button> : <button onClick={handleFavorite}>Favorite</button>}
         </>
         :<button>must log in to favorite</button>}
         <button onClick = {handleCritiques} >See Critiques</button>
+        </div>
         </>
     )
 }

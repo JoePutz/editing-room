@@ -1,5 +1,6 @@
 class CritiquesController < ApplicationController
   before_action :set_critique, only: [:show, :update, :destroy]
+  # skip_before_action :authorized, only: :index
 
   # GET /critiques
   def index
@@ -40,6 +41,7 @@ class CritiquesController < ApplicationController
 
   # DELETE /critiques/1
   def destroy
+    @critique.responses.destroy_all
     @critique.destroy
   end
 

@@ -1,8 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import GenreCard from "./GenreCard";
-// import { Card } from 'semantic-ui-react'
-
 
 function Genre ()  {
 
@@ -18,9 +15,7 @@ const western = "Western"
 const nonfi = "Non-Fiction"
 
     return (
-        <>
-        <div>Crime</div>
-        <Link to='/genres/:id'>Crime</Link>
+        <div id="contains">
         <GenreCard genre={crime}/>
         <GenreCard genre={fantasy}/>
         <GenreCard genre={romance}/>
@@ -31,7 +26,7 @@ const nonfi = "Non-Fiction"
         <GenreCard genre={thriller}/>
         <GenreCard genre={western}/>
         <GenreCard genre={nonfi}/>
-        </>
+        </div>
     )
 }
 

@@ -13,10 +13,11 @@ function GenrePage( {genre} ) {
     }, []);
 
     return (
-        <>
-        <h1>Should autofill the header with the genre selected then have an assortment of stories beneath in Story Cards that can be searched through</h1>
-        {stories.map((story) => <StoryCard story = {story} />)}
-        </>
+        <div id="contains">
+            <div className="userpage">
+        <h1>{id}</h1></div>
+        {stories.map((story) => <StoryCard key={story.id} story = {story} />)}
+        </div>
     )
 }
 

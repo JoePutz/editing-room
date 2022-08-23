@@ -8,7 +8,7 @@ function GenreCard( {genre} ) {
     }
 
     return (
-        <div onClick={handleClick}>
+        <div id="genreCard" onClick={handleClick}>
             <h2>{genre}</h2>
         </div>
     )

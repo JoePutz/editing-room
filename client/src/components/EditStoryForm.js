@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 
 
 function EditStoryForm ( user ) {
-    //title, :user_id, :genre, :text, :synopsis
     const [editTitle, setEditTitle] = useState("")
     const [editText, setEditText] = useState("")
     const [editSynopsis, setEditSynopsis] = useState("")
@@ -25,20 +24,6 @@ function EditStoryForm ( user ) {
           });
     }, []);
 
-    // console.log(story.text)
-
-    // const handleEditReview = (e) => {
-    //     setEditReview(false)
-    //     console.log(starAmount)
-    //     fetch(`/reviews/${userReview.id}`, {
-    //         method: "PATCH",
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({comment: editComment, star: starAmount})
-    //     }).then(r => r.json())
-    //     .then(d => console.log(d))
-    // }
 
     function handleSubmit (e) {
         e.preventDefault();
@@ -64,9 +49,9 @@ function EditStoryForm ( user ) {
             })
         }
 
-        console.log(story.genre)
       
     return (
+        <div className="submitform">
         <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input
@@ -76,7 +61,7 @@ function EditStoryForm ( user ) {
           onChange={(e) => setEditTitle(e.target.value)}
         />
         <br></br>
-        <label for="genre-select">Choose a genre:</label>
+        <label htmlFor="genre-select">Choose a genre:</label>
         <select id="genre-select" onChange={(e) => setEditGenre(e.target.value)}>
             <option value={story.genre}>{story.genre}</option>
             <option value={"Crime"} >Crime</option>
@@ -91,13 +76,21 @@ function EditStoryForm ( user ) {
             <option value={"Non-Fiction"} >Non-Fiction</option>
         </select>
         <br></br>
+        <label htmlFor="synopsis">Synopsis:</label>
+        <br></br>
         <textarea defaultValue={story.synopsis} onChange={(e) => setEditSynopsis(e.target.value)} name="synopsis" rows="5" cols="30" style={{width: 1200}}>{story.synopsis}</textarea>
+        <br></br>
+        <span id="chars">{editSynopsis ? 300 - editSynopsis.length : 300 }</span> characters remaining
+        <br></br>
+        <br></br>
+        <label htmlFor="text">Story:</label>
         <br></br>
         <textarea defaultValue={story.text} onChange={(e) => setEditText(e.target.value)} name="text" rows="50" cols="30" style={{width: 1200}}></textarea>
         <br></br>
         <button type="submit">Submit</button>
         <button onClick={handleDelete}>Delete Story</button>
         </form>
+        </div>
     )
 }
 

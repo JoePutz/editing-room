@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function StoryForm ( user ) {
-    //title, :user_id, :genre, :text, :synopsis
     const [title, setTitle] = useState("")
     const [genre, setGenre] = useState("")
     const [text, setText] = useState("")
@@ -27,9 +26,11 @@ function StoryForm ( user ) {
             .then((r) => r.json())
             .then(() => navigate(`/account`));
         }
-      
+
 
     return (
+        <div className="submitform">
+            <br></br>
         <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input
@@ -39,7 +40,8 @@ function StoryForm ( user ) {
           onChange={(e) => setTitle(e.target.value)}
         />
         <br></br>
-        <label for="genre-select">Choose a genre:</label>
+        <br></br>
+        <label htmlFor="genre-select">Choose a genre:</label>
 
         <select id="genre-select" onChange={(e) => setGenre(e.target.value)}>
             <option value={""}>--Please choose an option--</option>
@@ -55,12 +57,21 @@ function StoryForm ( user ) {
             <option value={"Non-Fiction"} >Non-Fiction</option>
         </select>
         <br></br>
-        <textarea onChange={(e) => setSynopsis(e.target.value)} name="synopsis" rows="5" cols="30" style={{width: 1200}}></textarea>
         <br></br>
-        <textarea onChange={(e) => setText(e.target.value)} name="text" rows="50" cols="30" style={{width: 1200}}></textarea>
+        <label htmlFor="synopsis">Synopsis:</label>
+        <br></br>
+        <textarea onChange={(e) => setSynopsis(e.target.value)} maxLength="300" name="synopsis" rows="5" cols="30" style={{width: 1200}}></textarea>
+        <br></br>
+        <span id="chars">{300 - synopsis.length}</span> characters remaining
+        <br></br>
+        <br></br>
+        <label htmlFor="text">Story:</label>
+        <br></br>
+        <textarea onChange={(e) => setText(e.target.value)} name="text" rows="25" cols="30" style={{width: 1200}}></textarea>
         <br></br>
         <button type="submit">Submit</button>
         </form>
+        </div>
     )
 }
 
