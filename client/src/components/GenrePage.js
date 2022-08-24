@@ -17,6 +17,7 @@ function GenrePage( {genre} ) {
             <div className="userpage">
         <h1>{id}</h1></div>
         {stories.map((story) => <StoryCard key={story.id} story = {story} />)}
+        <br></br>
         </div>
     )
 }

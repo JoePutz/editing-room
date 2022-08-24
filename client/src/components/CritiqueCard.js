@@ -62,10 +62,10 @@ return(
         {user? <>        
         {visible? 
         <>
-        <button onClick={handleResponse}>Close</button>
+        <button className="fancybutton" onClick={handleResponse}>Close</button>
         <ResponseForm user={user} critique={critique} handleResponseDelete={handleResponseDelete} submitResponse={handleSubmit} setResponse={setResponse} />
         </>
-        : <button onClick={handleResponse}>Reply</button>}
+        : <button className="fancybutton" onClick={handleResponse}>Reply</button>}
         </> : <></>}
     </div>
 )

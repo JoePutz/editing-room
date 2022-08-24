@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 function Login({ onLogin }) {
     const navigate = useNavigate();
   
-    const [loginError,setLoginError] = useState(null)
+    const [loginError,setLoginError] = useState(false)
+    const [showLoginError, setShowLoginError] = useState([])
     const [user, setUser] = useState({
       username: null,
       password: null
@@ -34,7 +35,7 @@ function Login({ onLogin }) {
             r.json().then(user => onLogin(user)).then(() => navigate(`/account`))
           } else {
             setLoginError(true)
-            r.json().then(error => console.log(error))
+            r.json().then(error => setShowLoginError(error.error))
           }
         })
     }
@@ -42,22 +43,33 @@ function Login({ onLogin }) {
     
   
     return (
-      <div className="submitform">
+      <div className="submitsmallform">
+        <br></br>
       <form onSubmit={handleSubmit}>
+      <label htmlFor="username">Username:  </label>
+      <br></br>
         <input
+          style={{width: 250}}
           placeholder='username'
           type="text"
           onChange={handleChange}
         />
         <br></br>
+        <br></br>
+        <label htmlFor="password">Password:  </label>
+        <br></br>
         <input 
+          style={{width: 250}}
           type="password"
           placeholder='password'
           onChange={handleChange}
         />
         <br></br>
-        <button type="submit">Login</button>
+        <br></br>
+        <button className="fancybutton" type="submit">Login</button>
       </form>
+      <br></br>
+      {loginError? <><a>{showLoginError}</a><br></br></> : <></>}
       </div>
     );
   }

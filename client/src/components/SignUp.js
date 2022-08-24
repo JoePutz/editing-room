@@ -8,6 +8,8 @@ function SignUp({ onLogin }) {
     // const [userImage, setUserImage] = useState("")
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [ showErrors, setShowErrors] = useState([])
+    const [ errors, setErrors ] = useState(false)
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const navigate = useNavigate();
     
@@ -46,11 +48,14 @@ function SignUp({ onLogin }) {
           })
           .then(() => navigate(`/account`))
         }
+        else {
+          r.json().then(error => setShowErrors(error.errors)).then (() => setErrors(true))
+        }
       })
     }
   
     return (
-      <div className="submitform">
+      <div className="submitsmallform">
         <br></br>
       <form onSubmit={handleSubmit}>
         <label htmlFor="first_name">First Name:  </label>
@@ -130,8 +135,14 @@ function SignUp({ onLogin }) {
         />
         <br></br>
         <br></br>
-        <button type="submit">Submit</button>
+        <button className="fancybutton" type="submit">Submit</button>
       </form>
+      {errors? <>{showErrors.map((error) => 
+      <><a>{error}</a>
+      <br></br>
+      </>
+      )}</> : <></>}
+      <br></br>
       </div>
     );
   }

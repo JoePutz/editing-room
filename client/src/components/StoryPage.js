@@ -64,9 +64,9 @@ function StoryPage( user ) {
     }
 
     return(
-        <>
+        <div id="contains">
         {user.user && user.user.username === story.author?
-        <button onClick={handleEdit}>Edit Story</button>
+        <button className="fancybutton" onClick={handleEdit}>Edit Story</button>
         : <></>}
         <div className="storypage">
             <br></br>
@@ -81,12 +81,13 @@ function StoryPage( user ) {
         <div className="storyHeader">
         {user.user?
         <>
-        {favorite.id ? <button onClick={handleUnfavorite}>Unfavorite</button> : <button onClick={handleFavorite}>Favorite</button>}
+        {favorite.id ? <button className="fancybutton" onClick={handleUnfavorite}>Unfavorite</button> : <button className="fancybutton" onClick={handleFavorite}>Favorite</button>}
         </>
         :<button>must log in to favorite</button>}
-        <button onClick = {handleCritiques} >See Critiques</button>
+        <button className="fancybutton" onClick = {handleCritiques} >See Critiques</button>
         </div>
-        </>
+        <br></br>
+        </div>
     )
 }
 

@@ -67,7 +67,7 @@ function User( {user} ) {
         <div className="userpage">
         <h1>Welcome {user.username}</h1>
         </div>
-            {users[0]? <p>{users[0].bio}</p> : <>Empty Bio</>}
+            {users[0]? <p className="userp">{users[0].bio}</p> : <>Empty Bio</>}
         {/* {user.bio?  
 
         <p>{user.bio}</p>
@@ -75,24 +75,24 @@ function User( {user} ) {
         :<p>Empty bio</p>} */}
         <div className="userpage">
         {hidden? 
-        <button onClick={handleEditClick}>Close</button> 
-        : <button onClick={handleEditClick}>Edit Bio</button>}
-        <button onClick ={writeStoryClick}>Write Story</button></div>
+        <button className="fancybutton" onClick={handleEditClick}>Close</button> 
+        : <button className="fancybutton" onClick={handleEditClick}>Edit Bio</button>}
+        <button className="fancybutton" onClick ={writeStoryClick}>Write Story</button></div>
         {hidden?
                 <div className="submitform">
                 <form onSubmit={handleSubmit}>
                     <a>Personal Image</a>
                     <br></br>
-                    <input defaultValue={user.image_url} onChange={(e) => setImage(e.target.value)} name="image" style={{width: 1200}}/>
+                    <input defaultValue={user.image_url} onChange={(e) => setImage(e.target.value)} name="image" style={{width: 1000}}/>
                     <br></br>
                     <a>Personal Bio</a>
                     <br></br>
-                    <textarea maxLength="300" defaultValue={user.bio} onChange={(e) => setBio(e.target.value)} name="bio" rows="5" cols="30" style={{width: 1200}}></textarea>
+                    <textarea maxLength="300" defaultValue={user.bio} onChange={(e) => setBio(e.target.value)} name="bio" rows="5" cols="30" style={{width: 1000}}></textarea>
                     <br></br>
                     <span id="chars">{bio ? 300 - bio.length : 300 }</span> characters remaining
                     <br></br>
                     <br></br>
-                    <button type="submit">Submit</button>
+                    <button className="fancybutton" type="submit">Submit</button>
                 </form>
                 </div>
         
@@ -106,6 +106,7 @@ function User( {user} ) {
             <h2>Your Favorites</h2>
         </div>
         {favorites? favorites.map((favorite) => <StoryCard key={favorite.id} story={favorite.fav_story}/>) : <></>}
+        <br></br>
         </>
         :<h1>Must Log In</h1>}
         </div>
