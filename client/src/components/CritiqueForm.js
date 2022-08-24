@@ -32,8 +32,9 @@ function CritiqueForm ( user ) {
             <br></br>
             <textarea onChange={(e) => setCriticism(e.target.value)} name="criticism" rows="5" cols="30" style={{width: 1200}}></textarea>
             <br></br>
-            <button type="submit">Submit</button>
+            <button className="fancybutton" type="submit">Submit</button>
         </form>
+        <br></br>
         </div>
     )
 }

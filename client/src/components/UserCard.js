@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function UserCard( { user} ) {
 
     return (
-        <div id="storyCard" >
+        <div id="authorCard" >
             <a className="title">{user.username}</a>
             <br></br>
             <a>{user.bio}</a>

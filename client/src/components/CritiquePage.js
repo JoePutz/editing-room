@@ -40,8 +40,8 @@ function CritiquePage( {user} ) {
     return(
         <>
         <span className="leftRight">
-        <Link to={`/storypage/${id}`}>Critiques of {story.title}</Link>
-        {user? <button onClick={handleClick}>Add Critique</button> : <></>}
+            <p className="bookLink"><i class="arrow left"></i> Return to  <Link className="truelink" to={`/storypage/${id}`}>{story.title}</Link></p>
+        {user? <button className="fancybutton" onClick={handleClick}>Add Critique</button> : <></>}
         </span>
         <br></br>
         <br></br>

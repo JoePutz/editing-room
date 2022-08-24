@@ -9,7 +9,7 @@ function GenreCard( {genre} ) {
 
     return (
         <div id="genreCard" onClick={handleClick}>
-            <h2>{genre}</h2>
+            <h3>{genre}</h3>
         </div>
     )
 }

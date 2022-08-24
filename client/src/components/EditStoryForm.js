@@ -87,8 +87,8 @@ function EditStoryForm ( user ) {
         <br></br>
         <textarea defaultValue={story.text} onChange={(e) => setEditText(e.target.value)} name="text" rows="50" cols="30" style={{width: 1200}}></textarea>
         <br></br>
-        <button type="submit">Submit</button>
-        <button onClick={handleDelete}>Delete Story</button>
+        <button className="fancybutton" type="submit">Submit</button>
+        <button className="fancybutton" onClick={handleDelete}>Delete Story</button>
         </form>
         </div>
     )

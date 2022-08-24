@@ -12,8 +12,10 @@ function UsersPage( ) {
 
     return (
         <div id="contains">
-        <h1>Our Authors</h1>
+            <div className="userpage">
+        <h1>Our Authors</h1></div>
         {users.map((user) => <UserCard user = {user} key={user.id}/>)}
+        <br></br>
         </div>
     )
 }

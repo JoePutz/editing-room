@@ -58,6 +58,8 @@ class StoriesController < ApplicationController
 
   # DELETE /stories/1
   def destroy
+    favs = Favorite.where(fav_story_id: @story.id)
+    favs.destroy_all
     @story.destroy
   end
 

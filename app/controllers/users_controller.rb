@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       user = User.where(id: params[:id])
       render json: user
     else
-    @users = User.all
+    @users = User.all.order(username: :asc)
 
     render json: @users
     end
