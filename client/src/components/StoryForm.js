@@ -1,12 +1,28 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { EditorState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { convertToHTML } from 'draft-convert';
 
 function StoryForm ( user ) {
     const [title, setTitle] = useState("")
     const [genre, setGenre] = useState("")
-    const [text, setText] = useState("")
     const [synopsis, setSynopsis] = useState("")
+    const  [convertedContent, setConvertedContent] = useState(null);
+    const [editorState, setEditorState] = useState(
+      () => EditorState.createEmpty(),
+    );
     const navigate = useNavigate();
+
+    const handleEditorChange = (state) => {
+      setEditorState(state);
+      convertContentToHTML();
+    }
+    const convertContentToHTML = () => {
+      let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
+      setConvertedContent(currentContentAsHTML);
+    }
 
     function handleSubmit (e) {
         e.preventDefault();
@@ -19,7 +35,7 @@ function StoryForm ( user ) {
               title: title,
               user_id: user.user.id,
               genre: genre,
-              text: text,
+              text: convertedContent,
               synopsis: synopsis,
             }),
           })
@@ -35,6 +51,7 @@ function StoryForm ( user ) {
         <label htmlFor="title">Title:</label>
         <input
           type="text"
+          className="signupInput"
           id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -60,14 +77,20 @@ function StoryForm ( user ) {
         <br></br>
         <label htmlFor="synopsis">Synopsis:</label>
         <br></br>
-        <textarea onChange={(e) => setSynopsis(e.target.value)} maxLength="300" name="synopsis" rows="5" cols="30" style={{width: 1200}}></textarea>
+        <textarea className="resizeText" onChange={(e) => setSynopsis(e.target.value)} maxLength="300" name="synopsis" rows="5"></textarea>
         <br></br>
         <span id="chars">{300 - synopsis.length}</span> characters remaining
         <br></br>
         <br></br>
         <label htmlFor="text">Story:</label>
         <br></br>
-        <textarea onChange={(e) => setText(e.target.value)} name="text" rows="25" cols="30" style={{width: 1200}}></textarea>
+        <Editor 
+          defaultEditorState={editorState} 
+          onEditorStateChange={handleEditorChange}
+          wrapperClassName="wrapper-class"
+          editorClassName="editor-class"
+          toolbarClassName="toolbar-class"
+        />
         <br></br>
         <br></br>
         <button className="fancybutton" type="submit">Submit</button>

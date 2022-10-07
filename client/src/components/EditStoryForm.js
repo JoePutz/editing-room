@@ -55,6 +55,7 @@ function EditStoryForm ( user ) {
         <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input
+          className="signupInput"
           type="text"
           id="title"
           defaultValue={story.title}
@@ -78,14 +79,14 @@ function EditStoryForm ( user ) {
         <br></br>
         <label htmlFor="synopsis">Synopsis:</label>
         <br></br>
-        <textarea defaultValue={story.synopsis} onChange={(e) => setEditSynopsis(e.target.value)} name="synopsis" rows="5" cols="30" style={{width: 1200}}>{story.synopsis}</textarea>
+        <textarea defaultValue={story.synopsis} onChange={(e) => setEditSynopsis(e.target.value)} name="synopsis" rows="5" className="resizeText">{story.synopsis}</textarea>
         <br></br>
         <span id="chars">{editSynopsis ? 300 - editSynopsis.length : 300 }</span> characters remaining
         <br></br>
         <br></br>
         <label htmlFor="text">Story:</label>
         <br></br>
-        <textarea defaultValue={story.text} onChange={(e) => setEditText(e.target.value)} name="text" rows="50" cols="30" style={{width: 1200}}></textarea>
+        <textarea defaultValue={story.text} onChange={(e) => setEditText(e.target.value)} name="text" rows="50" className="resizeText"></textarea>
         <br></br>
         <button className="fancybutton" type="submit">Submit</button>
         <button className="fancybutton" onClick={handleDelete}>Delete Story</button>

@@ -46,7 +46,9 @@ function CritiquePage( {user} ) {
         <br></br>
         <br></br>
         <div id="contains">
+        <br></br>
         {critiques.map(critique => <CritiqueCard key={critique.id} critique={critique} user={user} handleCritiqueDelete={handleCritiqueDelete} />) }
+        <br></br>
         </div>
         </>
     )

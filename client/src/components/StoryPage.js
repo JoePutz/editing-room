@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 
 function StoryPage( user ) {
     const navigate = useNavigate();
@@ -11,7 +12,9 @@ function StoryPage( user ) {
     useEffect(() => {
         fetch(`/stories/${id}`)
           .then((response) => response.json())
-          .then((data) => setStory(data));
+          .then((data) => {
+            setStory(data)
+          })
     }, [refresh]);
 
 
@@ -56,12 +59,18 @@ function StoryPage( user ) {
     }
 
     function handleEdit() {
-        navigate(`/storypage/${story.id}/edit`)
+        navigate(`/storypage/${story.id}/edit2`)
     }
 
     function handleCritiques() {
         navigate(`/storypage/${story.id}/critiques`)
     }
+
+    const createMarkup = (html) => {
+        return  {
+          __html: DOMPurify.sanitize(html)
+        }
+      }
 
     return(
         <div id="contains">
@@ -75,7 +84,7 @@ function StoryPage( user ) {
                 <h3>by: {story.author}</h3>
             </div>
             <div className="storytext">
-                <p>{story.text}</p>
+                {story? <div className="preview" dangerouslySetInnerHTML={createMarkup(story.text)}></div> : <></>}
             </div>
         </div>
         <div className="storyHeader">
@@ -83,7 +92,7 @@ function StoryPage( user ) {
         <>
         {favorite.id ? <button className="fancybutton" onClick={handleUnfavorite}>Unfavorite</button> : <button className="fancybutton" onClick={handleFavorite}>Favorite</button>}
         </>
-        :<button>must log in to favorite</button>}
+        :<button className="fancybutton">must log in to favorite</button>}
         <button className="fancybutton" onClick = {handleCritiques} >See Critiques</button>
         </div>
         <br></br>

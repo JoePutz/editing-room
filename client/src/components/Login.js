@@ -49,7 +49,7 @@ function Login({ onLogin }) {
       <label htmlFor="username">Username:  </label>
       <br></br>
         <input
-          style={{width: 250}}
+          className="signupInput"
           placeholder='username'
           type="text"
           onChange={handleChange}
@@ -59,7 +59,8 @@ function Login({ onLogin }) {
         <label htmlFor="password">Password:  </label>
         <br></br>
         <input 
-          style={{width: 250}}
+          className="signupInput"
+          // style={{width: 250}}
           type="password"
           placeholder='password'
           onChange={handleChange}

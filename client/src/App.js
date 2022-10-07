@@ -1,6 +1,10 @@
 import logo from './logo.svg';
+import React, { useState, useEffect } from "react";
+import { EditorState, ContentState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import { convertToHTML } from 'draft-convert';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './App.css';
-import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
@@ -11,14 +15,19 @@ import GenrePage from "./components/GenrePage";
 import StoryPage from "./components/StoryPage";
 import Login from "./components/Login";
 import StoryForm from "./components/StoryForm";
-import EditStoryForm from "./components/EditStoryForm";
+// import EditStoryForm from "./components/EditStoryForm";
+import EditStoryForm2 from "./components/EditStoryForm";
 import CritiquePage from "./components/CritiquePage";
 import CritiqueForm from "./components/CritiqueForm";
 import UsersPage from "./components/UsersPage";
+import DOMPurify from 'dompurify';
 
 
 function App() {
   const [user, setUser] = useState(null);
+  const [editorState, setEditorState] = useState(
+    () => EditorState.createEmpty(),
+  );
   
     useEffect(() => {
       fetch("/me").then((response) => {
@@ -43,6 +52,7 @@ function App() {
       <>
       <BrowserRouter>
       <NavBar user ={user} onLogin={setUser}/>
+      {/* <Editor editorState={editorState} /> */}
       <Routes>
         <Route path="/" element={<Home user={user} />}></Route>
         <Route path="/signup" element={<SignUp onLogin={setUser}/>}></Route>
@@ -50,7 +60,8 @@ function App() {
         <Route path="/genres/:id" element={<GenrePage />} />
         <Route path="/account" element={<User user={user}/>}></Route>
         <Route path="/storypage/:id" element={<StoryPage user={user}/>}></Route>
-        <Route path="/storypage/:id/edit" element={<EditStoryForm user={user}/>}></Route>
+        {/* <Route path="/storypage/:id/edit" element={<EditStoryForm user={user}/>}></Route> */}
+        <Route path="/storypage/:id/edit2" element={<EditStoryForm2 user={user}/>}></Route>
         <Route path="/storypage/:id/critiques" element={<CritiquePage user={user}/>}></Route>
         <Route path="/storypage/:id/critiques/add" element={<CritiqueForm user={user}/>}></Route>
         <Route path="/loginpage" element={<Login onLogin={setUser}/>}></Route>

@@ -27,3 +27,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+//Notes for the future: fix editor state or replace with different word code thing. This will need to be implemented in the way the editing system works as well. I have a lot of minor fixes I need to make. Look up different word programs is priority 1. 

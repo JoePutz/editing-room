@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ResponseForm from './ResponseForm'
 import ResponseCard from './ResponseCard'
+import DOMPurify from 'dompurify';
 
 function CritiqueCard( {critique, user, handleCritiqueDelete} ) {
     const [ responses, setResponses ] = useState([])
@@ -50,14 +51,22 @@ function CritiqueCard( {critique, user, handleCritiqueDelete} ) {
         handleCritiqueDelete(critique.id)
     }
 
-
+    const createMarkup = (html) => {
+        return  {
+          __html: DOMPurify.sanitize(html)
+        }
+      }
 
 
 return(
     <div id="critiqueCard">
         <a className="poster">{critique.user}</a>
         {user && user.id === critique.crit_writer_id ? <button onClick={handleDeleteClick} className="deleteCritique">Delete</button> : <></>}
-        <p>{critique.criticism}</p>
+        <div className="storytext">
+            <div className="preview" dangerouslySetInnerHTML={createMarkup(critique.criticism)}></div>
+        </div>
+        
+        {/* <p>{critique.criticism}</p> */}
         {responses.map((response) => <ResponseCard key={response.id} response={response} user={user} handleResponseDelete={handleResponseDelete}/>)}
         {user? <>        
         {visible? 

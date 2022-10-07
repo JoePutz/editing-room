@@ -61,7 +61,7 @@ function SignUp({ onLogin }) {
         <label htmlFor="first_name">First Name:  </label>
         <br></br>
         <input
-          style={{width: 250}}
+          className="signupInput"
           type="text"
           id="first_name"
           value={firstName}
@@ -72,7 +72,7 @@ function SignUp({ onLogin }) {
         <label htmlFor="last_name">Last Name:  </label>
         <br></br>
         <input
-          style={{width: 250}}
+          className="signupInput"
           type="text"
           id="last_name"
           value={lastName}
@@ -83,7 +83,7 @@ function SignUp({ onLogin }) {
         <label htmlFor="username">Username:  </label>
         <br></br>
         <input
-          style={{width: 250}}
+          className="signupInput"
           type="text"
           id="username"
           value={username}
@@ -94,7 +94,7 @@ function SignUp({ onLogin }) {
         <label htmlFor="email">Email:  </label>
         <br></br>
         <input
-          style={{width: 250}}
+          className="signupInput"
           type="text"
           id="email"
           value={email}
@@ -116,7 +116,7 @@ function SignUp({ onLogin }) {
         <label htmlFor="password">Password:  </label>
         <br></br>
         <input
-          style={{width: 250}}
+          className="signupInput"
           type="password"
           id="password"
           value={password}
@@ -127,7 +127,7 @@ function SignUp({ onLogin }) {
         <label htmlFor="password_confirmation">Confirm Password:  </label>
         <br></br>
         <input
-          style={{width: 250}}
+          className="signupInput"
           type="password"
           id="password_confirmation"
           value={passwordConfirmation}

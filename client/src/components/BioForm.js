@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function BioForm ( {user, handleEditClick } ) {
     const [bio, setBio] = useState("")
-    const [image, setImage] = useState("")
+    // const [image, setImage] = useState("")
 
 
     function handleSubmit (e) {
@@ -15,7 +15,7 @@ function BioForm ( {user, handleEditClick } ) {
             },
             body: JSON.stringify({
              bio: bio,
-             image_url: image,
+            //  image_url: image,
             }),
           })
             .then((r) => r.json())
@@ -25,13 +25,13 @@ function BioForm ( {user, handleEditClick } ) {
     return (
         <div className="submitform">
         <form onSubmit={handleSubmit}>
-            <a>Personal Image</a>
+            {/* <a>Personal Image</a>
             <br></br>
             <input defaultValue={user.image_url} onChange={(e) => setImage(e.target.value)} name="image" style={{width: 1200}}/>
-            <br></br>
+            <br></br> */}
             <a>Personal Bio</a>
             <br></br>
-            <textarea maxLength="300" defaultValue={user.bio} onChange={(e) => setBio(e.target.value)} name="bio" rows="5" cols="30" style={{width: 1200}}></textarea>
+            <textarea maxLength="300" defaultValue={user.bio} onChange={(e) => setBio(e.target.value)} name="bio" rows="5" className="resizeText"></textarea>
             <br></br>
             <span id="chars">{bio ? 300 - bio.length : 300 }</span> characters remaining
             <br></br>
