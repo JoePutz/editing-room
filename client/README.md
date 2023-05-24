@@ -1,3 +1,15 @@
+# Setting up
+rails s
+npm start --prefix client
+
+# postgres issues:
+pg_lsclusters
+This sees if postgres is down
+if it is
+sudo pg_ctlcluster 12 main start
+should restart postgres
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

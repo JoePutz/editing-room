@@ -2,12 +2,16 @@ import { useState } from "react";
 
 
 function BioForm ( {user, handleEditClick } ) {
+  //This is the base layer of the biography form
     const [bio, setBio] = useState("")
     const [image, setImage] = useState("")
 
 
     function handleSubmit (e) {
         e.preventDefault();
+        if (bio === "") {
+          setBio(user.bio)
+        }
         fetch(`/users/${user.id}`, {
             method: "PATCH",
             headers: {
