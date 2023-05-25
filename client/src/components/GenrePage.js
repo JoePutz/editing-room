@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import StoryCard from "./StoryCard";
 
 function GenrePage( {genre} ) {
-    // The page for each individual genres
+    // The page of all stories for each individual genre
     const [stories, setStories] = useState([])
     let { id } = useParams();
 
