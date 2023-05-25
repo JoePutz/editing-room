@@ -2,6 +2,7 @@ import React from "react";
 import GenreCard from "./GenreCard";
 
 function Genre ()  {
+// The page that is the list of genres
 
 const crime = "Crime"
 const fantasy = "Fantasy"

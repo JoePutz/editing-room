@@ -1,7 +1,5 @@
 function ResponseForm ( {submitResponse, setResponse} ) {
-
-
-
+    // Form to create a response to a critique
     function handleSubmit (e) {
         e.preventDefault();
         submitResponse(e)

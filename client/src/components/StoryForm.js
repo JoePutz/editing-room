@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function StoryForm ( user ) {
+  // Form to create a story
     const [title, setTitle] = useState("")
     const [genre, setGenre] = useState("")
     const [text, setText] = useState("")
@@ -9,6 +10,7 @@ function StoryForm ( user ) {
     const navigate = useNavigate();
 
     function handleSubmit (e) {
+      // submit function for form
         e.preventDefault();
         fetch("/stories", {
             method: "POST",

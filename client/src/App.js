@@ -21,6 +21,7 @@ function App() {
   const [user, setUser] = useState(null);
   
     useEffect(() => {
+      // immediately gathers user data
       fetch("/me").then((response) => {
         if (response.ok) {
           response.json().then((user) => setUser(user));
@@ -56,7 +57,6 @@ function App() {
         <Route path="/loginpage" element={<Login onLogin={setUser}/>}></Route>
         <Route path="/writestory" element={<StoryForm user={user} />}></Route>
         <Route path="/userspage" element={<UsersPage user={user} />}></Route>
-        {/* <Route path="/userpage/:id" element={<UserPage user={user}/>}></Route> */}
       </Routes>
       </BrowserRouter>
       </>

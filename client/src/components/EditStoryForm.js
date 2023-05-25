@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 
 function EditStoryForm ( user ) {
+  // Form to edit the story
     const [editTitle, setEditTitle] = useState("")
     const [editText, setEditText] = useState("")
     const [editSynopsis, setEditSynopsis] = useState("")
@@ -26,6 +27,7 @@ function EditStoryForm ( user ) {
 
 
     function handleSubmit (e) {
+      // submits the form
         e.preventDefault();
         fetch(`/stories/${id}`, {
             method: "PATCH",
@@ -44,6 +46,7 @@ function EditStoryForm ( user ) {
         }
 
         function handleDelete() {
+          // deletes the story
             fetch(`/stories/${id}`,{
                 method: "DELETE"
             })

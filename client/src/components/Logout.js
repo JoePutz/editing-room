@@ -1,4 +1,5 @@
 function Logout({ onLogout }) {
+  // Handles logout button press
     function handleLogout() {
       fetch("/logout", {
         method: "DELETE",

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 
 function StoryPage( user ) {
+    // Display page for each individual story
     const navigate = useNavigate();
     const [ story, setStory ] = useState([])
     const [ refresh, setRefresh] = useState(false)
@@ -30,6 +31,7 @@ function StoryPage( user ) {
     },[user])
 
     function handleFavorite() {
+        // if user selects it as a favorite, stores it in the user's favorites folder
         fetch("/favorites", {
             method: "POST",
             headers: {
@@ -49,6 +51,7 @@ function StoryPage( user ) {
 
 
     function handleUnfavorite() {
+        // removes from favorites
         fetch(`/favorites/${favorite.id}`,{
              method: "DELETE"
         })
@@ -56,10 +59,12 @@ function StoryPage( user ) {
     }
 
     function handleEdit() {
+        // on click send to the edit form
         navigate(`/storypage/${story.id}/edit`)
     }
 
     function handleCritiques() {
+        // on click sends to the critique page for the story
         navigate(`/storypage/${story.id}/critiques`)
     }
 

@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 
 function Login({ onLogin }) {
+  // The login form
     const navigate = useNavigate();
   
     const [loginError,setLoginError] = useState(false)
@@ -16,11 +17,13 @@ function Login({ onLogin }) {
       const {placeholder, value} = e.target
       setUser({...user, [placeholder]:value})
       if (loginError) {
+        // stop displaying login error after 30 seconds
         setTimeout(() => {  setLoginError(false) }, 3000);
     }
     }
 
     function handleSubmit(e) {
+      // submits the login form, sends directly to account page
       e.preventDefault();
       const {username, password} = user
       fetch("/login", {

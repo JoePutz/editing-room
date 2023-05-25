@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 function NavBar({ onLogin, user }) {
-
+    // sets display of Navbar and the various navlinks
     const logout = () => {
         fetch("/logout", {
             method: "DELETE",

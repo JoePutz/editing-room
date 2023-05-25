@@ -1,6 +1,5 @@
 class CritiquesController < ApplicationController
   before_action :set_critique, only: [:show, :update, :destroy]
-  # skip_before_action :authorized, only: :index
 
   # GET /critiques
   def index

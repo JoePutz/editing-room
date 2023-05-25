@@ -3,6 +3,7 @@ import ResponseForm from './ResponseForm'
 import ResponseCard from './ResponseCard'
 
 function CritiqueCard( {critique, user, handleCritiqueDelete} ) {
+    //Component for displaying individual critiques 
     const [ responses, setResponses ] = useState([])
     const [ refresh, setRefresh ] = useState(false)
     const [ response, setResponse ] =useState("")
@@ -16,10 +17,12 @@ function CritiqueCard( {critique, user, handleCritiqueDelete} ) {
     }, [refresh]);
 
     function handleResponse() {
+        // flips the visuals of all responses to the critique from off to on
         setVisible(!visible)
     }
 
     function handleSubmit(e) {
+        // submits the response form, at a lower layer
         e.preventDefault();
         fetch("/responses", {
             method: "POST",
@@ -40,6 +43,7 @@ function CritiqueCard( {critique, user, handleCritiqueDelete} ) {
     }
 
     function handleResponseDelete(id) {
+        // deletes the response to the critique, goes to lower layer
         fetch(`/responses/${id}`,{
             method: "DELETE"
        })
@@ -47,6 +51,7 @@ function CritiqueCard( {critique, user, handleCritiqueDelete} ) {
     }
 
     function handleDeleteClick() {
+        // deletes the critique
         handleCritiqueDelete(critique.id)
     }
 

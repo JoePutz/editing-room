@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import UserCard from "./UserCard";
 
 function UsersPage( ) {
+    // Page that lists all users
     const [users, setUsers] = useState([])
 
     useEffect(() => {

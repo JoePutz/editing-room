@@ -3,6 +3,7 @@ import StoryCard from "./StoryCard";
 import { useNavigate } from "react-router-dom";
 
 function User( {user} ) {
+    // Individual account page
     const [stories, setStories] = useState([])
     const [favorites, setFavorites] = useState([])
     const [ hidden, setHidden ] = useState(false)
@@ -17,6 +18,7 @@ function User( {user} ) {
 
 
     function handleSubmit (e) {
+        // the submit function for the bio form component
         e.preventDefault();
         fetch(`/users/${user.id}`, {
             method: "PATCH",
@@ -36,29 +38,30 @@ function User( {user} ) {
     }
 
     useEffect(() => {
+        // fetches user info
         fetch(`/users?id=${user.id}`)
             .then((r) => r.json())
             .then((data) => setUsers(data))
     }, [refresh]);
 
     useEffect(() => {
+        // fetches all stories written by the user
         fetch(`/stories?user_id=${user.id}`)
           .then((response) => response.json())
           .then((data) => setStories(data));
     }, []);
 
     useEffect(() => {
+        // fetches favorites
         fetch(`/favorites?fav_user_id=${user.id}`)
           .then((response) => response.json())
           .then((data) => setFavorites(data));
     }, []);
 
     function handleEditClick() {
+        // opens and closes the bio form
         setHidden(!hidden)
     }
-
-
-{/* <BioForm handleEditclick={handleEditClick} user = {user}/>  */}
     
     return (
         <div id="contains">
@@ -68,11 +71,6 @@ function User( {user} ) {
         <h1>Welcome {user.username}</h1>
         </div>
             {users[0]? <p className="userp">{users[0].bio}</p> : <>Empty Bio</>}
-        {/* {user.bio?  
-
-        <p>{user.bio}</p>
-        
-        :<p>Empty bio</p>} */}
         <div className="userpage">
         {hidden? 
         <button className="fancybutton" onClick={handleEditClick}>Close</button> 

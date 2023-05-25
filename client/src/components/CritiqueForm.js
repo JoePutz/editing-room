@@ -4,12 +4,14 @@ import { useParams } from 'react-router-dom';
 
 
 function CritiqueForm ( user ) {
+  // Form to create a critique to a story
     const [criticism, setCriticism] = useState("")
     const navigate = useNavigate();
     let { id } = useParams();
 
 
     function handleSubmit (e) {
+      // submits the form
         e.preventDefault();
         fetch("/critiques", {
             method: "POST",

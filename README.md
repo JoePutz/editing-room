@@ -1,29 +1,40 @@
-# README
+# Editing Room
 
+## Table of Contents
+* [General Info](#general-information)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [Site](#site)
+* [Setup](#setup)
 
-hey Joe, you want the instructions on how to do all this plus the Heroku stuff you ignored the first day? 
-Here it is: https://github.com/learn-co-curriculum/react-rails-project-setup-guide
-Dont lose or forget or delete that until you need to
+## General Information
+A page designed for amateur writers to post their works and offer critiques to each other. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Technologies Used
+- active-record: 6.1 
+- javascript: ES6
+- rake: 13.6
+- react: 18.2
+- ruby: 2.7.4
+- faker: 2.19
+- sqlite: 1.4
 
-Things you may want to cover:
+## Features
+A User will be able to: 
+- Create an account
+- Modify their account bio
+- Type up and post stories
+- Edit their posted stories
+- Search the various stories sorted by Genre
+- Read through those stories
+- Critique and Favorite individual stories
+- Comment upon other critiques that they observe
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Setup
+- First fork the app from github and cd into the app
+- run: 
+- bundle install
+- rails db:create
+- npm intall --prefix client
+- rails s
+- npm start --prefix client

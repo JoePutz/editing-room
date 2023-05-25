@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function SignUp({ onLogin }) {
+  // Form to sign up for the page
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -15,6 +16,7 @@ function SignUp({ onLogin }) {
     
   
     function handleSubmit(e) {
+      // submits the form on success navigates to new account page
       e.preventDefault();
       const user = {
         first_name: firstName,

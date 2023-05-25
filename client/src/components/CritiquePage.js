@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function CritiquePage( {user} ) {
+    // The display of all critiques to each individual stories
     const [ critiques, setCritiques ] = useState([])
     const [ story, setStory ] = useState([])
     const [ refresh, setRefresh ] = useState(false)
@@ -12,6 +13,7 @@ function CritiquePage( {user} ) {
 
     const navigate = useNavigate();
     function handleClick() {
+        //returns to the story page
         navigate(`/storypage/${id}/critiques/add`)
     }
 
@@ -28,6 +30,7 @@ function CritiquePage( {user} ) {
     }, []);
 
     function handleCritiqueDelete(critiqueID) {
+        // deletes the individual critiques and all responses to the critique
         fetch(`/critiques/${critiqueID}`,{
             method: "DELETE"
        })

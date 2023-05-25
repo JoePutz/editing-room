@@ -2,8 +2,10 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 
 function StoryCard( { story} ) {
+    // display of each individual story card
     const navigate = useNavigate();
     const handleClick = (e) => {
+        // on click sends to the actual full story page
         navigate(`/storypage/${story.id}`)
     }
 

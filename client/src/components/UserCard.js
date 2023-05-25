@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 
 function UserCard( { user} ) {
-
+    // Individual users (authors) listed on the User Page
     return (
         <div id="authorCard" >
             <a className="title">{user.username}</a>
